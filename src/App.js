@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import './index.css';
+
+const Home = lazy(() => import('./components/Home'));
+const Products = lazy(() => import('./components/Products'));
+const About = lazy(() => import('./components/About'));
+const Contact = lazy(() => import('./components/Contact'));
+const Blog = lazy(() => import('./components/Blog'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div style={{ fontFamily: '"Open Sans", sans-serif', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <Navbar />
+        <Suspense fallback={<div style={{ textAlign: 'center', padding: '48px', color: '#800000' }}>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Products />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Suspense>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
