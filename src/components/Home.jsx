@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grid, Card, CardMedia, CardContent, Typography, Button, Modal, Box, TextField, IconButton, Avatar } from '@mui/material';
+import { Container,  Card, CardMedia, CardContent, Typography, Button, Modal, Box, TextField, IconButton, Avatar } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Close } from '@mui/icons-material';
 import Hero from './Hero';
@@ -17,7 +17,7 @@ const Home = () => {
     { 
       quote: 'The akhand diya brings a divine glow to our puja room, truly exceptional!', 
       author: 'Priya S.', 
-      avatar: 'https://media.istockphoto.com/id/1442186846/photo/headshot-portrait-of-smiling-indian-woman-renter.jpg' 
+      avatar: 'https://thumbs.dreamstime.com/b/indian-lady-7221639.jpg' 
     },
     { 
       quote: 'The rangoli kit made our Diwali vibrant and so easy to create!', 
@@ -80,7 +80,7 @@ const Home = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: '#FFFDD0', minHeight: '100vh' }}>
+    <Box sx={{  bgcolor: '#FFFDD0', minHeight: '100vh', overflowX: 'hidden', boxSizing: 'border-box'  }}>
       <Hero />
       {/* Featured Products Carousel */}
       <Container maxWidth="xl" sx={{ py: { xs: 6, md: 10 } }}>
@@ -266,42 +266,7 @@ const Home = () => {
               ))}
             </Box>
           </AnimatePresence>
-          <IconButton
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: { xs: -40, sm: -50 },
-              transform: 'translateY(-50%)',
-              color: '#FFFDD0',
-              bgcolor: '#4B0000',
-              '&:hover': { bgcolor: '#FF9933' },
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              width: { xs: 40, sm: 48 },
-              height: { xs: 40, sm: 48 },
-            }}
-            onClick={handlePrevProduct}
-            aria-label="Previous products"
-          >
-            <ChevronLeft fontSize="large" />
-          </IconButton>
-          <IconButton
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              right: { xs: -40, sm: -50 },
-              transform: 'translateY(-50%)',
-              color: '#FFFDD0',
-              bgcolor: '#4B0000',
-              '&:hover': { bgcolor: '#FF9933' },
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              width: { xs: 40, sm: 48 },
-              height: { xs: 40, sm: 48 },
-            }}
-            onClick={handleNextProduct}
-            aria-label="Next products"
-          >
-            <ChevronRight fontSize="large" />
-          </IconButton>
+           
         </Box>
       </Container>
 
@@ -393,8 +358,8 @@ const Home = () => {
               <Box
                 key={index}
                 sx={{
-                  width: 10,
-                  height: 10,
+                  width: 5,
+                  height: 5,
                   borderRadius: '50%',
                   bgcolor: index === currentTestimonial ? '#FF9933' : '#FFFDD0',
                   opacity: index === currentTestimonial ? 1 : 0.5,
@@ -404,40 +369,39 @@ const Home = () => {
                 onClick={() => setCurrentTestimonial(index)}
               />
             ))}
-          </Box>
-          <IconButton
+          </Box> <IconButton
+            onClick={handlePrevTestimonial}
             sx={{
               position: 'absolute',
               top: '50%',
-              left: { xs: -40, sm: -50 },
+              left: { xs: 6, sm: 12 },
               transform: 'translateY(-50%)',
-              color: '#FFFDD0',
-              bgcolor: 'rgba(0,0,0,0.3)',
-              '&:hover': { bgcolor: '#FF9933' },
-              width: { xs: 40, sm: 48 },
-              height: { xs: 40, sm: 48 },
+              bgcolor: '#D3D3D1',
+              color: 'black',
+              '&:hover': { bgcolor: '#FFD700', color: '#4B0000' },
+              zIndex: 2,
+              p: { xs: 1, sm: 1.5 },
             }}
-            onClick={handlePrevTestimonial}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft fontSize="large" />
+            <ChevronLeft />
           </IconButton>
           <IconButton
+            onClick={handleNextTestimonial}
             sx={{
               position: 'absolute',
               top: '50%',
-              right: { xs: -40, sm: -50 },
+              right: { xs: 8, sm: 16 },
               transform: 'translateY(-50%)',
-              color: '#FFFDD0',
-              bgcolor: 'rgba(0,0,0,0.3)',
-              '&:hover': { bgcolor: '#FF9933' },
-              width: { xs: 40, sm: 48 },
-              height: { xs: 40, sm: 48 },
+               bgcolor: '#D3D3D1',
+              color: 'black',
+             '&:hover': { bgcolor: '#FFD700', color: '#4B0000' },
+              zIndex: 2,
+              p: { xs: 1, sm: 1.5 },
             }}
-            onClick={handleNextTestimonial}
             aria-label="Next testimonial"
           >
-            <ChevronRight fontSize="large" />
+            <ChevronRight />
           </IconButton>
         </Box>
       </Container>

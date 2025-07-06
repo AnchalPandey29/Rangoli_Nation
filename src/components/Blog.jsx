@@ -30,9 +30,10 @@ const Blog = () => {
 
   return (
     <Box
-      sx={{
-        py: { xs: 4, md: 8 },
-        background: 'linear-gradient(to bottom, #FFFDD0, #FFFFFF)', // Cream to white gradient
+      sx={{py: { xs: 4, sm: 6, md: 8 },
+        background: 'linear-gradient(to bottom, #FFFDD0, #FFFFFF)',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
       }}
     >
       <Container maxWidth="lg">

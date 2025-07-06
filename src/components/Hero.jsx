@@ -1,26 +1,25 @@
-// src/components/Hero.jsx
 import React from 'react';
-import { Container, Button, Typography, Box } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 300], [0, 50]); // Parallax effect
+  const y = useTransform(scrollY, [0, 300], [0, 50]);
 
   return (
     <Box
       sx={{
         position: 'relative',
-        height: { xs: '80vh', md: '100vh' },
+        height: { xs: '80vh', sm: '90vh', md: '100vh' },
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden',
-        backgroundColor: '#FFFDD0', // Cream fallback
+        overflowX: 'hidden',
+        backgroundColor: '#FFFDD0',
+        boxSizing: 'border-box',
       }}
     >
-      {/* Background Image with Parallax */}
       <motion.div
         style={{
           position: 'absolute',
@@ -31,21 +30,21 @@ const Hero = () => {
           backgroundImage: "url('https://static.vecteezy.com/system/resources/previews/029/632/120/non_2x/oil-lamps-lit-on-colorful-rangoli-during-diwali-celebration-colorful-clay-diya-lamps-with-flowers-free-photo.jpeg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          y, // Parallax effect
+          y,
           zIndex: 0,
+          maxWidth: '100%',
         }}
       >
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(180deg, rgba(128, 0, 0, 0.5) 0%, rgba(128, 0, 0, 0.3) 100%)', // Maroon gradient overlay
+            background: 'linear-gradient(180deg, rgba(128, 0, 0, 0.5) 0%, rgba(128, 0, 0, 0.3) 100%)',
           }}
         />
       </motion.div>
 
-      {/* Content */}
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, textAlign: 'center', color: '#FFFDD0' }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, textAlign: 'center', color: '#FFFDD0', px: { xs: 2, sm: 3 } }}>
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -55,10 +54,11 @@ const Hero = () => {
             variant="h1"
             sx={{
               fontFamily: '"Lora", serif',
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3.5rem', lg: '4.5rem' },
               fontWeight: 700,
               mb: 2,
               textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+              maxWidth: '100%',
             }}
           >
             Celebrate Tradition with Elegance
@@ -72,9 +72,9 @@ const Hero = () => {
           <Typography
             sx={{
               fontFamily: '"Open Sans", sans-serif',
-              fontSize: { xs: '1rem', md: '1.25rem' },
+              fontSize: { xs: '0.9rem', sm: '1rem', md: '1.25rem' },
               mb: 4,
-              maxWidth: '600px',
+              maxWidth: { xs: '100%', sm: '600px' },
               mx: 'auto',
             }}
           >
@@ -86,30 +86,34 @@ const Hero = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut', repeat: Infinity, repeatType: 'reverse', repeatDelay: 1 }}
         >
-          <Button
-            variant="contained"
+          <Box
+            component="button"
             component={Link}
             to="/shop"
-            aria-label="Shop Now"
             sx={{
-              backgroundColor: '#FF9933', // Saffron
-              color: '#FFFDD0', // Cream
+              backgroundColor: '#FF9933',
+              color: '#FFFDD0',
               fontFamily: '"Open Sans", sans-serif',
-              fontSize: { xs: '1rem', md: '1.125rem' },
-              px: { xs: 3, md: 4 },
+              fontSize: { xs: '0.9rem', sm: '1rem', md: '1.125rem' },
+              px: { xs: 2, sm: 3, md: 4 },
               py: 1.5,
               borderRadius: '50px',
+              border: 'none',
+              cursor: 'pointer',
               boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
               '&:hover': {
-                backgroundColor: '#FFD700', // Gold
+                backgroundColor: '#FFD700',
                 transform: 'scale(1.05)',
                 boxShadow: '0 6px 16px rgba(0,0,0,0.3)',
               },
               transition: 'all 0.3s ease',
+              width: { xs: '100%', sm: 'auto' },
+              maxWidth: '200px',
             }}
+            aria-label="Shop Now"
           >
             Shop Now
-          </Button>
+          </Box>
         </motion.div>
       </Container>
     </Box>

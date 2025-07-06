@@ -17,11 +17,13 @@ const Footer = () => {
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
       style={{
-        background: 'linear-gradient(to bottom, #800000, #4B0000)', // Maroon gradient
+        background: 'linear-gradient(to bottom, #800000, #4B0000)',
         color: '#FFFDD0',
         paddingTop: 32,
         paddingBottom: 32,
         marginTop: 'auto',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
       }}
       role="contentinfo"
     >
@@ -50,7 +52,12 @@ const Footer = () => {
         </Box>
 
         {/* Footer Grid */}
-        <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="center">
+        <Grid
+          container
+          spacing={{ xs: 2, md: 4 }}
+          justifyContent="center"
+          sx={{ mb: { xs: 2, md: 4 } }} // Add margin bottom to maintain space
+        >
           <Grid item xs={12} md={4}>
             <motion.div
               initial="hidden"
@@ -81,6 +88,7 @@ const Footer = () => {
               </Typography>
             </motion.div>
           </Grid>
+
           <Grid item xs={12} md={4}>
             <motion.div
               initial="hidden"
@@ -100,7 +108,7 @@ const Footer = () => {
               >
                 Quick Links
               </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5}}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
                 {['Home', 'Shop', 'Blog', 'About', 'Contact'].map((item) => (
                   <motion.div
                     key={item}
@@ -148,66 +156,97 @@ const Footer = () => {
                   fontSize: { xs: '1.25rem', md: '1.5rem' },
                 }}
               >
-                Connect With Us
+                Connect Here
               </Typography>
-              <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-                <motion.a
-                  href="https://instagram.com"
-                  aria-label="Visit our Instagram page"
-                  whileHover={{ scale: 1.1, color: '#FFD700' }}
-                  transition={{ duration: 0.3 }}
-                  style={{ color: '#FFFDD0' }}
-                >
-                  <svg
-                    style={{ width: '32px', height: '32px' }}
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 2,
+                  alignItems: 'center',
+                  flexDirection: { xs: 'column', md: 'row' }, // Responsive direction
+                }}
+              >
+                {[
+                  {
+                    href: "https://instagram.com",
+                    label: "Visit our Instagram page",
+                    svg: (
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style={{ display: 'block' }}
+                      >
+                        <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.326 3.608 1.301.975.975 1.24 2.242 1.301 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.326 2.633-1.301 3.608-.975.975-2.242 1.24-3.608 1.301-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.326-3.608-1.301-.975-.975-1.24-2.242-1.301-3.608-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.062-1.366.326-2.633 1.301-3.608.975-.975 2.242-1.24 3.608-1.301 1.265-.058 1.645-.07 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.465.066-2.867.364-4.135 1.632C1.645 2.972 1.347 4.374 1.281 5.839c-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.066 1.465.364 2.867 1.632 4.135 1.268 1.268 2.67 1.566 4.135 1.632 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.465-.066 2.867-.364 4.135-1.632 1.268-1.268 1.566-2.67 1.632-4.135.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.066-1.465-.364-2.867-1.632-4.135-1.268-1.268-2.67-1.566-4.135-1.632-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441-.645-1.441-1.441s.645-1.441 1.441-1.441 1.441.645 1.441 1.441-.645 1.441-1.441 1.441z"/>
+                      </svg>
+                    ),
+                  },
+                  {
+                    href: "https://pinterest.com",
+                    label: "Visit our Pinterest page",
+                    svg: (
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style={{ display: 'block' }}
+                      >
+                        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.623 3.872 10.328 9.092 11.63-.122-1.1-.193-2.798.07-4.007.237-1.087 1.533-6.52 1.533-6.52s-.39-.781-.39-1.937c0-1.813 1.05-3.166 2.357-3.166 1.112 0 1.646.835 1.646 1.835 0 1.116-.708 2.787-.708 4.335 0 2.26 1.466 4.102 3.446 4.102 4.133 0 7.31-4.354 7.31-10.615 0-5.55-3.99-9.42-9.686-9.42z"/>
+                      </svg>
+                    ),
+                  },
+                  {
+                    href: "https://facebook.com",
+                    label: "Visit our Facebook page",
+                    svg: (
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style={{ display: 'block' }}
+                      >
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                    ),
+                  },
+                ].map((icon, idx) => (
+                  <motion.a
+                    key={icon.href}
+                    href={icon.href}
+                    aria-label={icon.label}
+                    whileHover={{ scale: 1.1, color: '#FFD700' }}
+                    transition={{ duration: 0.3 }}
+                    style={{ color: '#FFFDD0', display: 'flex' }}
                   >
-                    <path d="M12 2.163c3.204 0 3.584.012 4.849.07 1.366.062 2.633.326 3.608 1.301.975.975 1.24 2.242 1.301 3.608.058 1.265.07 1.645.07 4.849s-.012 3.584-.07 4.849c-.062 1.366-.326 2.633-1.301 3.608-.975.975-2.242 1.24-3.608 1.301-1.265.058-1.645.07-4.849.07s-3.584-.012-4.849-.07c-1.366-.062-2.633-.326-3.608-1.301-.975-.975-1.24-2.242-1.301-3.608-.058-1.265-.07-1.645-.07-4.849s.012-3.584.07-4.849c.062-1.366.326-2.633 1.301-3.608.975-.975 2.242-1.24 3.608-1.301 1.265-.058 1.645-.07 4.849-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.465.066-2.867.364-4.135 1.632C1.645 2.972 1.347 4.374 1.281 5.839c-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.066 1.465.364 2.867 1.632 4.135 1.268 1.268 2.67 1.566 4.135 1.632 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.465-.066 2.867-.364 4.135-1.632 1.268-1.268 1.566-2.67 1.632-4.135.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.066-1.465-.364-2.867-1.632-4.135-1.268-1.268-2.67-1.566-4.135-1.632-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441-.645-1.441-1.441s.645-1.441 1.441-1.441 1.441.645 1.441 1.441-.645 1.441-1.441 1.441z"/>
-                  </svg>
-                </motion.a>
-                <motion.a
-                  href="https://pinterest.com"
-                  aria-label="Visit our Pinterest page"
-                  whileHover={{ scale: 1.1, color: '#FFD700' }}
-                  transition={{ duration: 0.3 }}
-                  style={{ color: '#FFFDD0' }}
-                >
-                  <svg
-                    style={{ width: '32px', height: '32px' }}
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.623 3.872 10.328 9.092 11.63-.122-1.1-.193-2.798.07-4.007.237-1.087 1.533-6.52 1.533-6.52s-.39-.781-.39-1.937c0-1.813 1.05-3.166 2.357-3.166 1.112 0 1.646.835 1.646 1.835 0 1.116-.708 2.787-.708 4.335 0 2.26 1.466 4.102 3.446 4.102 4.133 0 7.31-4.354 7.31-10.615 0-5.55-3.99-9.42-9.686-9.42z"/>
-                  </svg>
-                </motion.a>
-                <motion.a
-                  href="https://facebook.com"
-                  aria-label="Visit our Facebook page"
-                  whileHover={{ scale: 1.1, color: '#FFD700' }}
-                  transition={{ duration: 0.3 }}
-                  style={{ color: '#FFFDD0' }}
-                >
-                  <svg
-                    style={{ width: '32px', height: '32px' }}
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </motion.a>
+                    <Box
+                      sx={{
+                        width: { xs: 24, md: 32 },
+                        height: { xs: 24, md: 32 },
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {React.cloneElement(icon.svg, {
+                        width: '100%',
+                        height: '100%',
+                      })}
+                    </Box>
+                  </motion.a>
+                ))}
               </Box>
             </motion.div>
           </Grid>
         </Grid>
-
-        {/* Rights Section */}
-         <motion.div
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          sx={{ textAlign: 'center', mt: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          style={{ textAlign: 'center', marginTop: 32, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
           <Typography
             sx={{
@@ -216,9 +255,11 @@ const Footer = () => {
               fontSize: { xs: '0.875rem', md: '0.95rem' },
               textAlign: 'center',
               width: '100%',
+              padding: '0 16px',
             }}
           >
             © 2025 Rangoli Nation. All rights reserved.{' '}
+            <br />
             <motion.a
               href="https://anchalpandey.dev"
               target="_blank"

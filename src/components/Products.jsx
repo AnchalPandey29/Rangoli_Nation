@@ -45,8 +45,10 @@ const Products = () => {
 
   return (
     <Box
-      sx={{
-        py: { xs: 4, md: 8 },
+      sx={{py: { xs: 4, sm: 6, md: 8, lg: 10 },
+        bgcolor: '#FFFDD0',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
         background: 'linear-gradient(to bottom, #FFFDD0, #FFFFFF)', // Cream to white gradient
       }}
     >
