@@ -16,6 +16,7 @@ const Hero = () => {
         alignItems: 'center',
         justifyContent: 'center',
         overflowX: 'hidden',
+        overflowY: 'hidden',
         backgroundColor: '#FFFDD0',
         boxSizing: 'border-box',
       }}

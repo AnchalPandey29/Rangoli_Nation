@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 import { WhatsApp, Phone, Email, LocationOn, Instagram, Facebook, Twitter, LinkedIn } from '@mui/icons-material';
 
 const Contact = () => {
-  // Animation variants for alternating slide-ins
   const slideVariants = (direction) => ({
-    hidden: { x: direction === 'left' ? -100 : 100, opacity: 0 },
+    hidden: { x: direction === 'left' ? -50 : 50, opacity: 0 },
     visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: 'easeOut' } },
   });
 
@@ -18,10 +17,11 @@ const Contact = () => {
         display: 'flex',
         justifyContent: 'center',
         minHeight: '100vh',
+        overflowX: 'hidden',
+        boxSizing: 'border-box',
       }}
     >
-      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
-        {/* Header Section */}
+      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -35,7 +35,7 @@ const Contact = () => {
               viewBox="0 0 80 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
+              style={{ maxWidth: '100%' }}
             >
               <path
                 d="M40 0c-2 2-5 4-10 4s-8-2-10-4c2 2 5 6 10 6s8-4 10-6zm0 8c-2 2-5 4-10 4s-8-2-10-4c2 2 5 6 10 6s8-4 10-6zm0 8c-2 2-5 4-10 4s-8-2-10-4c2 2 5 6 10 6s8-4 10-6z"
@@ -66,7 +66,7 @@ const Contact = () => {
               mb: 4,
               fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
               lineHeight: 1.6,
-              maxWidth: 600,
+              maxWidth: '100%',
               mx: 'auto',
             }}
           >
@@ -74,8 +74,12 @@ const Contact = () => {
           </Typography>
         </motion.div>
 
-        {/* Contact Grid */}
-        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} justifyContent="center">
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3, md: 4 }}
+          justifyContent="center"
+          alignItems="center"
+        >
           <Grid item xs={12} sm={10} md={6}>
             <motion.div
               initial="hidden"
@@ -85,8 +89,8 @@ const Contact = () => {
             >
               <Box
                 sx={{
-                  minWidth: { xs: 280, sm: 320, md: 360 },
-                  maxWidth: { xs: 500, sm: 600 },
+                  minWidth: { xs: 'clamp(260px, 90vw, 360px)' },
+                  maxWidth: '100%',
                   width: '100%',
                   mx: 'auto',
                   p: { xs: 2, sm: 3, md: 4 },
@@ -113,6 +117,7 @@ const Contact = () => {
                           '&:hover fieldset': { borderColor: '#FFD700' },
                           '&.Mui-focused fieldset': { borderColor: '#FF9933', boxShadow: '0 0 8px rgba(255,153,51,0.3)' },
                         },
+                        maxWidth: '100%',
                       }}
                       inputProps={{ 'aria-label': 'Your name' }}
                     />
@@ -130,6 +135,7 @@ const Contact = () => {
                           '&:hover fieldset': { borderColor: '#FFD700' },
                           '&.Mui-focused fieldset': { borderColor: '#FF9933', boxShadow: '0 0 8px rgba(255,153,51,0.3)' },
                         },
+                        maxWidth: '100%',
                       }}
                       inputProps={{ 'aria-label': 'Your email address' }}
                     />
@@ -149,6 +155,7 @@ const Contact = () => {
                           '&:hover fieldset': { borderColor: '#FFD700' },
                           '&.Mui-focused fieldset': { borderColor: '#FF9933', boxShadow: '0 0 8px rgba(255,153,51,0.3)' },
                         },
+                        maxWidth: '100%',
                       }}
                       inputProps={{ 'aria-label': 'Your message' }}
                     />
@@ -161,16 +168,18 @@ const Contact = () => {
                         color: '#FFFDD0',
                         fontFamily: '"Open Sans", sans-serif',
                         fontWeight: 700,
-                        px: { xs: 4, sm: 5 },
+                        px: { xs: 3, sm: 4 },
                         py: 1.5,
                         borderRadius: '10px',
-                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
                         border: 'none',
                         cursor: 'pointer',
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
                         textTransform: 'uppercase',
                         '&:hover': { backgroundColor: '#FFD700', color: '#4B0000', transform: 'scale(1.05)' },
                         transition: 'all 0.3s',
                         alignSelf: 'center',
+                        width: { xs: '100%', sm: 'auto' },
+                        maxWidth: '200px',
                       }}
                       aria-label="Send message"
                     >
@@ -190,8 +199,8 @@ const Contact = () => {
             >
               <Box
                 sx={{
-                  minWidth: { xs: 280, sm: 320, md: 360 },
-                  maxWidth: { xs: 500, sm: 600 },
+                  minWidth: { xs: 'clamp(260px, 90vw, 360px)' },
+                  maxWidth: '100%',
                   width: '100%',
                   mx: 'auto',
                   p: { xs: 2, sm: 3, md: 4 },
@@ -202,7 +211,6 @@ const Contact = () => {
                   '&:hover': { transform: 'scale(1.02)' },
                 }}
               >
-               
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                     <Phone sx={{ color: '#FF9933', fontSize: { xs: '1.25rem', sm: '1.5rem' } }} />
@@ -210,7 +218,8 @@ const Contact = () => {
                       sx={{
                         fontFamily: '"Open Sans", sans-serif',
                         color: '#333',
-                        fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem', lg: '1rem' },
+                        maxWidth: '100%',
                       }}
                     >
                       <strong>Phone:</strong>{' '}
@@ -229,7 +238,8 @@ const Contact = () => {
                       sx={{
                         fontFamily: '"Open Sans", sans-serif',
                         color: '#333',
-                        fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem', lg: '1rem' },
+                        maxWidth: '100%',
                       }}
                     >
                       <strong>WhatsApp:</strong>{' '}
@@ -250,7 +260,8 @@ const Contact = () => {
                       sx={{
                         fontFamily: '"Open Sans", sans-serif',
                         color: '#333',
-                        fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem', lg: '1rem' },
+                        maxWidth: '100%',
                       }}
                     >
                       <strong>Email:</strong>{' '}
@@ -269,20 +280,23 @@ const Contact = () => {
                       sx={{
                         fontFamily: '"Open Sans", sans-serif',
                         color: '#333',
-                        fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem', lg: '1rem' },
+                        maxWidth: '100%',
                       }}
                     >
                       <strong>Address:</strong> 123 Spiritual Lane, Mumbai, India
                     </Typography>
                   </Box>
                 </Box>
-  <motion.iframe
+             
+                <motion.iframe
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.8 }}
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.789!2d72.834189!3d19.076090!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306649b517%3A0x1e7b7e8a932c0a7a!2sMumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sus!4v1635781234567!5m2!1sen!2sus"
                   style={{
                     width: '100%',
+                    maxWidth: '100%',
                     height: { xs: '180px', sm: '220px', md: '300px' },
                     borderRadius: '12px',
                     border: '1px solid #FF9933',
@@ -293,19 +307,21 @@ const Contact = () => {
                   title="Rangoli Nation Location"
                 />
 
-                <Typography
+   <Typography
                   sx={{
                     fontFamily: '"Lora", serif',
                     color: '#4B0000',
                     mt: 2,
-                    fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                    fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem', lg: '1.5rem' },
                     fontWeight: 700,
                     textAlign: 'center',
                   }}
                 >
                   Follow Us
                 </Typography>
-                <Box
+               
+
+                 <Box
                   sx={{
                     display: 'flex',
                     flexDirection: 'row',
@@ -313,10 +329,8 @@ const Contact = () => {
                     gap: { xs: 1, sm: 1.5 },
                     justifyContent: 'center',
                     alignItems: 'center',
-                    maxWidth: { xs: 300, sm: 400 },
+                    maxWidth: { xs: '100%', sm: '360px' },
                     mx: 'auto',
-                    mb: 1,
-                  
                   }}
                 >
                   <motion.div whileHover={{ scale: 1.2 }} transition={{ duration: 0.3 }}>
@@ -364,7 +378,6 @@ const Contact = () => {
                     </IconButton>
                   </motion.div>
                 </Box>
-              
               </Box>
             </motion.div>
           </Grid>
