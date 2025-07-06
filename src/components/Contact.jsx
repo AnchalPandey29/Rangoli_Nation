@@ -13,6 +13,7 @@ const Contact = () => {
     <Box
       sx={{
         py: { xs: 4, sm: 6, md: 8, lg: 10 },
+        px: 2,
         background: 'linear-gradient(180deg, #FFFDD0 0%, #FFFFFF 100%)',
         display: 'flex',
         justifyContent: 'center',
@@ -74,11 +75,14 @@ const Contact = () => {
           </Typography>
         </motion.div>
 
+
         <Grid
           container
           spacing={{ xs: 2, sm: 3, md: 4 }}
           justifyContent="center"
           alignItems="center"
+          mx='auto'
+          sx={{marginRight:3}}
         >
           <Grid item xs={12} sm={10} md={6}>
             <motion.div
@@ -86,6 +90,8 @@ const Contact = () => {
               whileInView="visible"
               variants={slideVariants('right')}
               viewport={{ once: true }}
+              
+              sx={{ display: 'flex', justifyContent: 'center' }}
             >
               <Box
                 sx={{
